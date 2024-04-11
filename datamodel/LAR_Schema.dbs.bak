@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="LAR_Schema" id="MySql-1dfa" database="MySql" >
+	<schema name="lar_schema" >
+		<table name="borrower_info" prior="borrower_id" >
+			<column name="borrower_id" type="INT" jt="4" mandatory="y" />
+			<column name="applicant_first_name" type="VARCHAR" length="100" jt="12" />
+			<column name="applicant_middle_name" type="VARCHAR" length="100" jt="12" />
+			<column name="applicant_last_name" type="VARCHAR" length="100" jt="12" />
+			<column name="co_borrower_first_name" type="VARCHAR" length="100" jt="12" />
+			<column name="co_borrower_middle_name" type="VARCHAR" length="100" jt="12" />
+			<column name="co_borrower_last_name" type="VARCHAR" length="100" jt="12" />
+			<column name="applicant_ethnicity" type="VARCHAR" length="10" jt="12" />
+			<column name="applicant_race" type="VARCHAR" length="10" jt="12" />
+			<column name="derived_sex" type="VARCHAR" length="10" jt="12" />
+			<column name="applicant_age" type="INT" jt="4" />
+			<column name="applicant_age_above_62" type="CHAR" length="2" jt="1" />
+			<column name="co-applicant_ethnicity" type="CHAR" length="10" jt="1" >
+				<comment><![CDATA[derived from co-applicant_ethnicity-1 to co-applicant_ethnicity-5 and co-applicant_ethnicity_observed)]]></comment>
+			</column>
+			<column name="co-applicant_race" type="CHAR" length="10" jt="1" >
+				<comment><![CDATA[derived from co-applicant_race-1 to co-applicant_race-5 and co-applicant_race_observed]]></comment>
+			</column>
+			<column name="co-applicant_sex" type="CHAR" length="10" jt="1" />
+			<column name="co-applicant_age" type="INT" jt="4" />
+			<column name="co-applicant_age_above_62" type="INT" jt="4" />
+			<index name="pk_borrower_info" unique="PRIMARY_KEY" >
+				<column name="borrower_id" />
+			</index>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="fact_info" prior="fact" spec="" >
+			<column name="fact_id" prior="chart_id" type="INT" jt="4" mandatory="y" />
+			<column name="loan_id" type="INT" jt="4" />
+			<column name="borrower_id" type="INT" jt="4" />
+			<column name="loan_type_id" type="INT" jt="4" />
+			<column name="property_id" type="INT" jt="4" />
+			<column name="location_id" type="INT" jt="4" />
+			<column name="loan_amount" type="DECIMAL" length="5" decimal="2" jt="3" />
+			<column name="combined_loan_to_value_ratio" type="DECIMAL" length="5" decimal="2" jt="3" />
+			<column name="interest_rate" type="DECIMAL" length="5" decimal="2" jt="3" />
+			<column name="rate_spread" type="DECIMAL" length="5" decimal="2" jt="3" />
+			<column name="hoepa_status" type="CHAR" length="5" jt="1" />
+			<column name="total_loan_costs" type="DECIMAL" length="5" decimal="2" jt="3" />
+			<column name="total_points_and_fees" type="DECIMAL" length="5" decimal="2" jt="3" />
+			<column name="origination_charges" type="DECIMAL" length="5" decimal="2" jt="3" />
+			<column name="discount_points" type="DECIMAL" length="5" decimal="2" jt="3" />
+			<column name="lender_credits" type="DECIMAL" length="5" decimal="2" jt="3" />
+			<column name="loan_term" type="INT" jt="4" />
+			<column name="prepayment_penalty_term" type="INT" jt="4" />
+			<column name="property_value" type="DECIMAL" length="5" decimal="2" jt="3" />
+			<column name="negative_amortization" type="CHAR" length="5" jt="1" />
+			<column name="interest_only_payment" type="CHAR" length="5" jt="1" />
+			<column name="balloon_payment" type="CHAR" length="5" jt="1" />
+			<column name="other_nonamortizing_features" type="CHAR" length="5" jt="1" />
+			<column name="income" type="DECIMAL" length="5" decimal="2" jt="3" />
+			<column name="debt_to_income_ratio" type="DECIMAL" length="5" decimal="2" jt="3" />
+			<index name="pk_fact" unique="PRIMARY_KEY" >
+				<column name="fact_id" />
+			</index>
+			<fk name="fk_fact_info_loan_info" to_schema="lar_schema" to_table="loan_info" >
+				<fk_column name="loan_id" pk="loan_id" />
+			</fk>
+			<fk name="fk_fact_info_borrower_info" to_schema="lar_schema" to_table="borrower_info" >
+				<fk_column name="borrower_id" pk="borrower_id" />
+			</fk>
+			<fk name="fk_fact_info_loan_type_info" to_schema="lar_schema" to_table="loan_type_info" >
+				<fk_column name="loan_type_id" pk="loan_type_id" />
+			</fk>
+			<fk name="fk_fact_info_property_info" to_schema="lar_schema" to_table="property_info" >
+				<fk_column name="property_id" pk="property_id" />
+			</fk>
+			<fk name="fk_fact_info_location_info" to_schema="lar_schema" to_table="location_info" >
+				<fk_column name="location_id" pk="location_id" />
+			</fk>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="loan_info" prior="tbl" >
+			<column name="loan_id" type="INT" jt="4" mandatory="y" />
+			<column name="activity_year" type="INT" jt="4" />
+			<column name="derived_loan_product_type" type="VARCHAR" length="10" jt="12" />
+			<column name="derived_dwelling_category" type="VARCHAR" length="10" jt="12" />
+			<column name="conforming_loan_limit" type="VARCHAR" length="10" jt="12" />
+			<column name="action_taken" type="VARCHAR" length="10" jt="12" />
+			<column name="purchaser_type" type="VARCHAR" length="10" jt="12" />
+			<column name="preapproval" type="VARCHAR" length="10" jt="12" />
+			<column name="loan_purpose" type="VARCHAR" length="10" jt="12" />
+			<column name="lien_status" type="VARCHAR" length="10" jt="12" />
+			<column name="reverse_mortgage" type="VARCHAR" length="10" jt="12" />
+			<column name="open-end_line_of_credit" type="VARCHAR" length="10" jt="12" />
+			<column name="business_or_commercial_purpose" type="VARCHAR" length="10" jt="12" />
+			<column name="intro_rate_period" type="INT" jt="4" />
+			<column name="denial_reason" type="VARCHAR" length="10" jt="12" >
+				<comment><![CDATA[1, 2, 3, 4]]></comment>
+			</column>
+			<index name="pk_loan_info" unique="PRIMARY_KEY" >
+				<column name="loan_id" />
+			</index>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="loan_type_info" prior="tbl" >
+			<column name="loan_type_id" type="INT" jt="4" mandatory="y" />
+			<column name="loan_type" type="VARCHAR" length="10" jt="12" />
+			<index name="pk_loan_type_info" unique="PRIMARY_KEY" >
+				<column name="loan_type_id" />
+			</index>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="location_info" prior="tbl" >
+			<column name="location_id" type="INT" jt="4" mandatory="y" />
+			<column name="state_code" type="VARCHAR" length="10" jt="12" />
+			<column name="county_code" type="VARCHAR" length="10" jt="12" />
+			<column name="zip_code" type="VARCHAR" length="10" jt="12" />
+			<column name="city" type="VARCHAR" length="20" jt="12" />
+			<column name="metropolitan_statistical_area" type="VARCHAR" length="10" jt="12" />
+			<index name="pk_location_info" unique="PRIMARY_KEY" >
+				<column name="location_id" />
+			</index>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="property_info" prior="tbl" >
+			<column name="property_id" type="INT" jt="4" mandatory="y" />
+			<column name="census_tract" type="VARCHAR" length="10" jt="12" />
+			<column name="construction_method" type="VARCHAR" length="10" jt="12" />
+			<column name="occupancy_type" type="VARCHAR" length="10" jt="12" />
+			<column name="manufactured_home_secured_property_type" type="VARCHAR" length="10" jt="12" />
+			<column name="manufactured_home_land_property_interest" type="VARCHAR" length="10" jt="12" />
+			<column name="total_units" type="INT" jt="4" />
+			<column name="multifamily_affordable_units" type="INT" jt="4" />
+			<column name="submission_of_application" type="VARCHAR" length="10" jt="12" />
+			<column name="initially_payable_to_institution" type="VARCHAR" length="10" jt="12" />
+			<column name="aus" type="VARCHAR" length="10" jt="12" >
+				<comment><![CDATA[1, 2, 3, 4, 5]]></comment>
+			</column>
+			<column name="denial_reason" type="VARCHAR" length="10" jt="12" >
+				<comment><![CDATA[1, 2, 3, 4]]></comment>
+			</column>
+			<index name="pk_property_info" unique="PRIMARY_KEY" >
+				<column name="property_id" />
+			</index>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout-142a" show_relation="columns" >
+		<callout x="51" y="51" pointer="Round" >
+			<comment><![CDATA[This is a layout - a diagram with tools.
+- Right-click the layout to create new tables. 
+- Double-click table headers to edit. 
+- For a better understanding of the schema, create multiple layouts.
+- Save the design to the model file, and deploy from 'Schema / Create into the database'.]]></comment>
+		</callout>
+		<script name="SQL_Editor" id="Editor-1525" language="SQL" >
+			<string><![CDATA[CREATE TABLE `your_dataset.loan_facts` (
+  loan_id STRING PRIMARY KEY,
+  loan_amount DECIMAL(10,2),
+  interest_rate DECIMAL(5,2),
+  loan_term INT64,
+  loan_product_type STRING,
+  loan_status STRING,
+  origination_date DATE,
+  delinquency_status STRING,
+  applicant_ethnicity_1 STRING,
+  applicant_ethnicity_2 STRING,
+  applicant_ethnicity_3 STRING,
+  applicant_ethnicity_4 STRING,
+  applicant_ethnicity_5 STRING,
+  co_applicant_ethnicity_1 STRING,
+  co_applicant_ethnicity_2 STRING,
+  co_applicant_ethnicity_3 STRING,
+  co_applicant_ethnicity_4 STRING,
+  co_applicant_ethnicity_5 STRING,
+  applicant_race_1 STRING,
+  applicant_race_2 STRING,
+  applicant_race_3 STRING,
+  applicant_race_4 STRING,
+  applicant_race_5 STRING,
+  co_applicant_race_1 STRING,
+  co_applicant_race_2 STRING,
+  co_applicant_race_3 STRING,
+  co_applicant_race_4 STRING,
+  co_applicant_race_5 STRING,
+  applicant_sex STRING,
+  co_applicant_sex STRING,
+  applicant_age INTEGER,
+  co_applicant_age INTEGER,
+  applicant_age_above_62 STRING,
+  co_applicant_age_above_62 STRING,
+  denial_reason_1 STRING,
+  denial_reason_2 STRING,
+  denial_reason_3 STRING,
+  denial_reason_4 STRING,
+  -- Add other relevant fields from loan_facts data source
+   borrower_id STRING,  -- Foreign key referencing borrower_info.borrower_id
+  property_id STRING,  -- Foreign key referencing property_characteristics.property_id
+  loan_type_id STRING,  -- Foreign key referencing loan_type_info.loan_type_id (New)
+  location_id STRING  -- Optional: Foreign key referencing location.location_id (if using Option 1 or 2 for location)
+);]]></string>
+		</script>
+	</layout>
+	<layout name="lar_layout" id="Layout-c67" show_relation="columns" >
+		<entity schema="lar_schema" name="borrower_info" color="C1D8EE" x="765" y="374" />
+		<entity schema="lar_schema" name="fact_info" color="C1EED3" x="374" y="204" />
+		<entity schema="lar_schema" name="loan_info" color="C1D8EE" x="51" y="85" />
+		<entity schema="lar_schema" name="loan_type_info" color="C1D8EE" x="391" y="51" />
+		<entity schema="lar_schema" name="location_info" color="C1D8EE" x="85" y="442" />
+		<entity schema="lar_schema" name="property_info" color="C1D8EE" x="680" y="51" />
+		<script name="SQL_Editor" id="Editor-1e51" language="SQL" confirmed="y" >
+			<string><![CDATA[CREATE TABLE `your_dataset.borrower_info` (
+  borrower_id STRING PRIMARY KEY,
+  applicant_first_name STRING,
+  applicant_middle_name STRING,
+  applicant_last_name STRING,
+  co_borrower_first_name STRING,
+  co_borrower_middle_name STRING,
+  co_borrower_last_name STRING,
+  credit_score INTEGER,
+  loan_purpose STRING,
+  -- Add other relevant borrower demographic fields
+);]]></string>
+		</script>
+	</layout>
+</project>
