@@ -1,0 +1,9 @@
+my_bigquery_profile:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: citric-sprite-418620
+      dataset: loan_analytics
+      keyfile: citric-sprite-418620-0ee5c498cc7a.json
