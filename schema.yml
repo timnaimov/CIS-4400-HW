@@ -1,0 +1,99 @@
+version: 2
+
+models:
+  - name: borrower_info
+    columns:
+      - name: borrower_id
+        tests:
+          - not_null
+      - name: applicant_first_name
+        tests:
+          - not_null
+      - name: applicant_middle_name
+      - name: applicant_last_name
+      - name: co_borrower_first_name
+      - name: co_borrower_middle_name
+      - name: co_borrower_last_name
+      - name: applicant_ethnicity
+      - name: applicant_race
+      - name: derived_sex
+      - name: applicant_age
+      - name: applicant_age_above_62
+      - name: co_applicant_ethnicity
+      - name: co_applicant_race
+      - name: co_applicant_sex
+      - name: co_applicant_age
+      - name: co_applicant_age_above_62
+    description: "Table containing borrower information."
+    unique_key: borrower_id
+
+  - name: fact_info
+    columns:
+      - name: fact_id
+        tests:
+          - not_null
+      - name: loan_id
+        tests:
+          - not_null
+      - name: borrower_id
+        tests:
+          - not_null
+      - name: loan_type_id
+        tests:
+          - not_null
+      - name: property_id
+        tests:
+          - not_null
+      - name: location_id
+        tests:
+          - not_null
+      - name: loan_amount
+      - name: combined_loan_to_value_ratio
+      - name: interest_rate
+      - name: rate_spread
+      - name: hoepa_status
+      - name: total_loan_costs
+      - name: total_points_and_fees
+      - name: origination_charges
+      - name: discount_points
+      - name: lender_credits
+      - name: loan_term
+      - name: prepayment_penalty_term
+      - name: property_value
+      - name: negative_amortization
+      - name: interest_only_payment
+      - name: balloon_payment
+      - name: other_nonamortizing_features
+      - name: income
+      - name: debt_to_income_ratio
+    description: "Table containing loan facts."
+    unique_key: fact_id
+
+  - name: loan_info
+    columns:
+      - name: loan_id
+        tests:
+          - not_null
+      - name: activity_year
+      - name: derived_loan_product_type
+      - name: derived_dwelling_category
+      - name: conforming_loan_limit
+      - name: action_taken
+      - name: purchaser_type
+      - name: preapproval
+      - name: loan_purpose
+      - name: lien_status
+      - name: reverse_mortgage
+      - name: open-end_line_of_credit
+      - name: business_or_commercial_purpose
+      - name: intro_rate_period
+      - name: denial_reason
+    description: "Table containing loan information."
+    unique_key: loan_id
+
+  - name: loan_type_info
+    columns:
+      - name: loan_type_id
+        tests:
+          - not_null
+      - name: loan_type
