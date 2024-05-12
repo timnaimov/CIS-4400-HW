@@ -34,14 +34,18 @@ Deliverables 3pts
 Step 3: Modeling 
 Once you have done the storage, you will need to start the modeling of the data warehouse. Remember the Data Warehouse contains already two main aspects. A fact table and a dimension table. The fact table must have a surrogate key as well as each dimension table. Modeling can be done using any tools. 
 
-Homework #2
+Deliverables 4pts
+- [x] Scripts that create the Data Warehouse 
+- [x] Data Warehouse accessible to everyone in the team and can’t be accessed through a client (DataGrip, DbSchema, SqlDBM)
+- [x] Scripts from previous steps updated.
+- [x] Git Repository Updated
+- [x] Data Model documented showing the fact table and the dimension table. - CIS 4400 HW1 Fact and Dimentions.xlsx
 
 Homework #2
  
 You are required to choose the previous data from homework 1. If you want to change your data, you are free to do so. However, you will have to start the whole homework 1 and it will not be graded. You are free to use any cloud provider. You are required to check the feedback from the professor.
- 
+
 Step 1: Transformation
- 
 Once you have stored the data, the next steps would be to transform the data. Data should be transformed according to specific business rules. While transformation the data, you should consider the following.
 ·       Unified date format YYYY-MM-DD
 ·       Splitting the date into multiple unit (Year, Quarter, Month, Day, Hour, etc…)
@@ -68,7 +72,6 @@ Deliverables - 5pts
 ·       Git Repository Updated
 
 Step 2: Modeling
-
 Once you have done the transformation, you will need to update the modeling of the data warehouse. Remember the Data Warehouse contains already two main aspects. A fact table and a dimension table. The fact table must have a surrogate key as well as each dimension table. Modeling can be done using any tools. Your data warehouse should be in Redshift.
  
 Deliverables  - 1pts
@@ -79,9 +82,8 @@ Deliverables  - 1pts
 ·       Data Inserted into the Data Warehouse
 ·       Data Warehouse accessible to everyone in the team and can’t be accessed through a client (DBeaver, DataGrip)
 ·       Git Repository Updated
- 
+
 Step 3: Serving Data
- 
 You will be using an online visualization tool to show the data that you have transform. You should apply all the visualization practices you have seen in all sessions.  The following must be part of the Visual:
 ·       A Filtering tool by date or by dimension: When you filter by date, all charts should change based on the filter
 ·       A Pie Chart
@@ -98,11 +100,3 @@ Deliverables - 5pts
 ·       Notes :
  
 All deliverables mut be in the Github/Azure Devops/ Jira Board (this is your final report) with all the tasks you have executed including a readme that explain the project.
- 
- 
-Deliverables 4pts
-- [x] Scripts that create the Data Warehouse 
-- [x] Data Warehouse accessible to everyone in the team and can’t be accessed through a client (DataGrip, DbSchema, SqlDBM)
-- [x] Scripts from previous steps updated.
-- [x] Git Repository Updated
-- [x] Data Model documented showing the fact table and the dimension table. - CIS 4400 HW1 Fact and Dimentions.xlsx
