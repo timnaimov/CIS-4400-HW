@@ -98,6 +98,9 @@ You will be using an online visualization tool to show the data that you have to
 
 Deliverables - 5pts
 - [x] A PowerBI or a Tableau Link
+        - [ ] Loan Amount by Race and Purpose- Highlight Table: https://public.tableau.com/views/LoanAmountbyRaceandPurpose-HighlightTable/LoanAmountbyRaceandPurpose?:language=en-US&:sid=&:display_count=n&:origin=viz_share_link
+        - [ ] Total Loan Amount by Sex and Age - Stacked Bar Graph: https://public.tableau.com/views/TotalLoanAmountbySexandAge-StackedBarGraph/LoanAmountbySexandAge?:language=en-US&:sid=&:display_count=n&:origin=viz_share_link
+        - [ ] Loan Term by State - Tree Map: https://public.tableau.com/views/LoanTermbyState-TreeMap/StatesbyLoanTerm?:language=en-US&:sid=&:display_count=n&:origin=viz_share_link
 - [x] An API using Python script that will generate data in a csv format which can be used by Data Analyst.
 - [x] A link using AWS Quick Sight that connects to the Data Warehouse and shows the data.
 - [x] Git Repository Updated
